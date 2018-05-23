@@ -1,12 +1,14 @@
 # coding: utf-8
 from typing import List, Optional
 
+from domain.constants import LinkSourceEnum
+
 
 class Link:
 
     def __init__(
-        self, internal_id: Optional[str], url: str, name: str, image_url: str, tags: List[str], pocket_id: Optional[str]
-    ):
+        self, internal_id: Optional[str], url: str, name: str, image_url: str, tags: List[str], source: LinkSourceEnum
+    ) -> None:
         self.internal_id = internal_id
 
         self.url = url
@@ -14,4 +16,8 @@ class Link:
         self.image_url = image_url
         self.tags = tags
 
-        self.pocket_id = pocket_id
+        self.source = source
+
+    @staticmethod
+    def generate_id(source: str, _id: str) -> str:
+        return f"{source}__{_id}"
