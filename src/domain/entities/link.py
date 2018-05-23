@@ -19,5 +19,5 @@ class Link:
         self.source = source
 
     @staticmethod
-    def generate_id(source: str, _id: str) -> str:
+    def generate_id(source: LinkSourceEnum, _id: str) -> str:
         return f"{source}__{_id}"

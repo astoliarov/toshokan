@@ -4,9 +4,9 @@ import abc
 import datetime
 from typing import List, Optional
 
-from domain.constants import LinkSourceEnum
-from domain.entities import ImportStatistics
-from domain.requests import ImportLinksRequest
+from domain.constants import LinkSourceEnum, ResponsesTypesEnum
+from domain.entities import ImportStatistics, Link
+from domain.requests import ImportLinksRequest, AddLinksRequest
 
 
 class ILinkSource(metaclass=abc.ABCMeta):
@@ -17,6 +17,13 @@ class ILinkSource(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_source(self) -> LinkSourceEnum:
+        pass
+
+
+class ILinksDAO(metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def insert_many(self, links: List[Link]):
         pass
 
 
@@ -42,4 +49,18 @@ class IImportLinksUseCase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def execute(self, req: ImportLinksRequest) -> None:
+        pass
+
+
+class IResponse(metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def get_type(self) -> ResponsesTypesEnum:
+        pass
+
+
+class IAddLinksUseCase(metaclass=abc.ABCMeta):
+
+    @abc.abstractmethod
+    def execute(self, req: AddLinksRequest) -> IResponse:
         pass
