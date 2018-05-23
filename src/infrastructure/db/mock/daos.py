@@ -11,6 +11,9 @@ class MockLinksDAO(ILinksDAO):
     def insert_many(self, links: List[Link]) -> None:
         pass
 
+    def find_by_tag(self, tag: str) -> List[Link]:
+        return []
+
 
 class MockImportStatisticsDAO(IImportStatisticsDAO):
 

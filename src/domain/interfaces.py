@@ -66,7 +66,7 @@ class IAddLinksUseCase(metaclass=abc.ABCMeta):
 class IImportLinksUseCase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def execute(self, req: ImportLinksRequest) -> None:
+    def execute(self, req: ImportLinksRequest) -> IResponse:
         pass
 
 

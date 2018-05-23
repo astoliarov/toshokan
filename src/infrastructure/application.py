@@ -1,8 +1,10 @@
 # coding: utf-8
-from unittest import mock
+import fire
 
 from domain.usecases.find_by_tag import FindByTagUseCase
 from domain.usecases.import_links import ImportLinksUseCase
+from infrastructure.cli.cli_app import CLI
+
 from infrastructure.config.base import Config
 from infrastructure.db.mock.daos import MockLinksDAO, MockImportStatisticsDAO
 from infrastructure.external.pocket.service import PocketLinkSource
@@ -31,3 +33,8 @@ class Toshokan:
         )
 
         self.find_by_tag_usecase = FindByTagUseCase(links_dao=self.links_dao)
+
+        self.cli = CLI(self.import_from_pocket_usecase)
+
+    def run_cli(self):
+        fire.Fire(self.cli)

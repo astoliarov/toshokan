@@ -1,7 +1,7 @@
 # coding: utf-8
 from typing import List
 
-from domain.constants import ResponsesTypesEnum
+from domain.constants import ResponsesTypesEnum, LinkSourceEnum
 from domain.entities import Link
 from domain.interfaces import IResponse
 
@@ -22,3 +22,10 @@ class FindByTagResponse(SuccessResponse):
 
     def __init__(self, links: List[Link]) -> None:
         self.links = links
+
+
+class ImportLinksResponse(SuccessResponse):
+
+    def __init__(self, count: int, source: LinkSourceEnum) -> None:
+        self.count = count
+        self.source = source

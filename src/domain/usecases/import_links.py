@@ -1,6 +1,13 @@
 # coding: utf-8
-from domain.interfaces import ILinkSource, IImportStatisticsDAO, IUserNotificationService, IImportLinksUseCase
+from domain.interfaces import (
+    ILinkSource,
+    IImportStatisticsDAO,
+    IUserNotificationService,
+    IImportLinksUseCase,
+    IResponse,
+)
 from domain.requests import ImportLinksRequest
+from domain.responses import ImportLinksResponse
 
 
 class ImportLinksUseCase(IImportLinksUseCase):
@@ -15,7 +22,7 @@ class ImportLinksUseCase(IImportLinksUseCase):
         self.statistics_dao = statistics_dao
         self.user_notification_service = user_notification_service
 
-    def execute(self, req: ImportLinksRequest) -> None:
+    def execute(self, req: ImportLinksRequest) -> IResponse:
 
         source = self.links_source.get_source()
         last_statistics = self.statistics_dao.get_last_by_source(source)
@@ -32,3 +39,5 @@ class ImportLinksUseCase(IImportLinksUseCase):
 
         if req.send_results:
             self.user_notification_service.send_import_result_notification(current_statistics)
+
+        return ImportLinksResponse(count=current_statistics.count, source=current_statistics.source)
