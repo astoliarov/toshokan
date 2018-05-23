@@ -19,9 +19,9 @@ class AddLinksTestCase(TestCase):
 
     def test__execute__links_ids_updated(self):
         self.usecase.generate_identifier = mock.Mock()
-        self.usecase.generate_identifier.return_value = 'test'
+        self.usecase.generate_identifier.return_value = "test"
         link = LinkFactory()
-        link.internal_id = ''
+        link.internal_id = ""
 
         req = AddLinksRequest(links=[link])
         self.usecase.execute(req)
@@ -30,7 +30,7 @@ class AddLinksTestCase(TestCase):
 
     def test__execute__links_inserted(self):
         link = LinkFactory()
-        link.internal_id = ''
+        link.internal_id = ""
         links = [link]
 
         req = AddLinksRequest(links=links)

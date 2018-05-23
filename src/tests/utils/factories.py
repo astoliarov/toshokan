@@ -15,11 +15,11 @@ class LinkFactory(factory.Factory):
     class Meta:
         model = Link
 
-    internal_id = '0__test'
+    internal_id = "0__test"
     url = factory.lazy_attribute(lambda o: fake.url(schemes=None))
     image_url = factory.lazy_attribute(lambda o: fake.url(schemes=None))
     name = factory.lazy_attribute(lambda o: fake.sentence(nb_words=6, variable_nb_words=True, ext_word_list=None))
-    tags = ['test', 'test2']
+    tags = ["test", "test2"]
     source = LinkSourceEnum.POCKET
 
 

@@ -14,3 +14,9 @@ class AddLinksRequest:
 
     def __init__(self, links: List[Link]) -> None:
         self.links = links
+
+
+class FindByTagRequest:
+
+    def __init__(self, tag: str) -> None:
+        self.tag = tag

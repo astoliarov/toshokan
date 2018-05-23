@@ -43,7 +43,7 @@ class ImportTestCase(TestCase):
 
         self.statistics_dao_mock.get_last_by_source.assert_called_once_with(source)
 
-    def test__execute__links_service_get_links_called(self):
+    def test__execute__last_import_stat_exists__links_service_get_links_called(self):
         last_statistics, current_statistics = self.prepare__statistics()
         self.prepare__all_mocks(last_statistics, current_statistics)
 
@@ -51,6 +51,16 @@ class ImportTestCase(TestCase):
         self.usecase.execute(req=req)
 
         self.links_source_mock.get_and_store_links_since.assert_called_once_with(last_statistics.dt)
+
+    def test__execute__last_import_stat_not_exists__links_service_get_links_called(self):
+        last_statistics, current_statistics = self.prepare__statistics()
+        self.prepare__all_mocks(last_statistics, current_statistics)
+        self.statistics_dao_mock.get_last_by_source.return_value = None
+
+        req = ImportLinksRequest()
+        self.usecase.execute(req=req)
+
+        self.links_source_mock.get_and_store_links_since.assert_called_once_with(None)
 
     def test__execute__new_statistics_stored(self):
         last_statistics, current_statistics = self.prepare__statistics()

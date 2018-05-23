@@ -23,18 +23,22 @@ class ILinkSource(metaclass=abc.ABCMeta):
 class ILinksDAO(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def insert_many(self, links: List[Link]):
+    def insert_many(self, links: List[Link]) -> None:
+        pass
+
+    @abc.abstractmethod
+    def find_by_tag(self, tag: str) -> List[Link]:
         pass
 
 
 class IImportStatisticsDAO(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def insert(self, statistics: ImportStatistics):
+    def insert(self, statistics: ImportStatistics) -> None:
         pass
 
     @abc.abstractmethod
-    def get_last_by_source(self, source: LinkSourceEnum) -> ImportStatistics:
+    def get_last_by_source(self, source: LinkSourceEnum) -> Optional[ImportStatistics]:
         pass
 
 
