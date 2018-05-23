@@ -47,7 +47,7 @@ class PocketLinkSource(ILinkSource):
         else:
             tags = []
 
-        resolved_url = data.get('resolved_url', '')
+        resolved_url = data.get("resolved_url", "")
         if not resolved_url:
             return None
 
