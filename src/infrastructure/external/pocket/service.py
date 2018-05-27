@@ -19,8 +19,8 @@ class PocketLinkSource(ILinkSource):
     def get_source(self) -> LinkSourceEnum:
         return LinkSourceEnum.POCKET
 
-    def get_and_store_links_since(self, last_import_dt: Optional[datetime.datetime]) -> ImportStatistics:
-        data = self._get_raw_data(last_import_dt)
+    def get_links(self, since: Optional[datetime.datetime]) -> List[Link]:
+        data = self._get_raw_data(since)
         links = []
         for item in data:
             link = self._convert_raw_to_entity(item)
@@ -29,9 +29,7 @@ class PocketLinkSource(ILinkSource):
 
             links.append(link)
 
-        self.links_dao.insert_many(links)
-
-        return ImportStatistics(source=self.get_source(), dt=datetime.datetime.now(), count=len(links))
+        return links
 
     def _get_raw_data(self, last_import_dt: Optional[datetime.datetime]) -> List[Dict[str, Any]]:
         since = time.mktime(last_import_dt.timetuple()) if last_import_dt else None

@@ -27,6 +27,7 @@ class Toshokan:
         )
 
         self.import_from_pocket_usecase = ImportLinksUseCase(
+            links_dao=self.links_dao,
             link_source=self.pocket_source,
             statistics_dao=self.statistics_dao,
             user_notification_service=self.notification_service,

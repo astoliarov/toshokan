@@ -12,7 +12,7 @@ from domain.requests import ImportLinksRequest, AddLinksRequest, FindByTagReques
 class ILinkSource(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def get_and_store_links_since(self, last_import_dt: Optional[datetime.datetime]) -> ImportStatistics:
+    def get_links(self, since: Optional[datetime.datetime]) -> List[Link]:
         pass
 
     @abc.abstractmethod
