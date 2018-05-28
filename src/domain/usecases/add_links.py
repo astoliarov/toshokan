@@ -7,7 +7,7 @@ from domain.entities import Link
 from domain.requests import AddLinksRequest
 from domain.responses import AddLinksResponse
 
-from domain.interfaces import IAddLinksUseCase, ILinksDAO, IResponse
+from domain.interfaces import IAddLinksUseCase, ILinksDAO
 
 
 class AddLinksUseCase(IAddLinksUseCase):
@@ -15,7 +15,7 @@ class AddLinksUseCase(IAddLinksUseCase):
     def __init__(self, links_dao: ILinksDAO) -> None:
         self.links_dao = links_dao
 
-    def execute(self, req: AddLinksRequest) -> IResponse:
+    def execute(self, req: AddLinksRequest) -> AddLinksResponse:
 
         self.mark_links_as_internal(req.links)
         self.links_dao.insert_many(req.links)

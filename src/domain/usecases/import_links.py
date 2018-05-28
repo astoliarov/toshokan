@@ -8,7 +8,6 @@ from domain.interfaces import (
     IImportStatisticsDAO,
     IUserNotificationService,
     IImportLinksUseCase,
-    IResponse,
     ILinksDAO,
 )
 from domain.requests import ImportLinksRequest
@@ -29,7 +28,7 @@ class ImportLinksUseCase(IImportLinksUseCase):
         self.statistics_dao = statistics_dao
         self.user_notification_service = user_notification_service
 
-    def execute(self, req: ImportLinksRequest) -> IResponse:
+    def execute(self, req: ImportLinksRequest) -> ImportLinksResponse:
 
         source = self.links_source.get_source()
         last_statistics = self.statistics_dao.get_last_by_source(source)
