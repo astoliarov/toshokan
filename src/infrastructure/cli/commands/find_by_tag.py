@@ -1,4 +1,5 @@
 # coding: utf-8
+import json
 from pprint import pprint
 
 from domain.interfaces import IFindByTagUseCase
@@ -18,6 +19,7 @@ class FindByTagCommand:
         data = []
         for item in resp.links:
             data.append({
+                'name': item.name,
                 'url': item.url,
                 'image_url': item.image_url,
                 'internal_id': item.internal_id,
@@ -26,4 +28,4 @@ class FindByTagCommand:
             })
 
         print(f"Results by: {tag}")
-        pprint(data)
+        print(json.dumps(data, indent=4, sort_keys=True))
