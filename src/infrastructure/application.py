@@ -5,8 +5,9 @@ from domain.usecases.find_by_tag import FindByTagUseCase
 from domain.usecases.import_links import ImportLinksUseCase
 from infrastructure.cli.cli_app import CLI
 
-from infrastructure.config.base import Config
+from infrastructure.config.base import EnvironmentConfig
 from infrastructure.db.mock.daos import MockLinksDAO, MockImportStatisticsDAO
+from infrastructure.db.mongoengine.storage import Storage
 from infrastructure.external.pocket.service import PocketLinkSource
 from infrastructure.services.notification import MockNotificationService
 
@@ -15,10 +16,14 @@ class Toshokan:
 
     def __init__(self):
 
-        self.config = Config()
+        self.config = EnvironmentConfig()
 
-        self.links_dao = MockLinksDAO()
-        self.statistics_dao = MockImportStatisticsDAO()
+        # self.links_dao = MockLinksDAO()
+        # self.statistics_dao = MockImportStatisticsDAO()
+
+        self.storage = Storage("toshokan", "mongo:27017")
+        self.links_dao = self.storage.links_dao
+        self.statistics_dao = self.storage.import_statistics_dao
 
         self.notification_service = MockNotificationService()
 

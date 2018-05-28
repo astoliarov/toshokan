@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    build: ./src
+    command: python run.py import-from-pocket
+    env_file:
+      - variables.dev.env
+    volumes:
+      - ./src:/code
+  mongo:
+    image: mongo:3.4.10
+    env_file:
+      - variables.dev.env
+    volumes:
+      - ./volumes/mongo/db:/data/db
+    ports:
+      - 27017:27017
+    restart: "unless-stopped"

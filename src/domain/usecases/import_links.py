@@ -36,6 +36,7 @@ class ImportLinksUseCase(IImportLinksUseCase):
         last_import_dt = last_statistics.dt if last_statistics else None
 
         links = self.links_source.get_links(last_import_dt)
+        self.links_dao.insert_many(links)
 
         current_statistics = self.prepare_statistics(links)
 
