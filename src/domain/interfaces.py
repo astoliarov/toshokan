@@ -7,6 +7,7 @@ from typing import List, Optional
 from domain.constants import LinkSourceEnum, ResponsesTypesEnum
 from domain.entities import ImportStatistics, Link
 from domain.requests import ImportLinksRequest, AddLinksRequest, FindByTagRequest
+from domain.responses import FindByTagResponse, ImportLinksResponse, AddLinksResponse
 
 
 class ILinkSource(metaclass=abc.ABCMeta):
@@ -59,19 +60,19 @@ class IResponse(metaclass=abc.ABCMeta):
 class IAddLinksUseCase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def execute(self, req: AddLinksRequest) -> IResponse:
+    def execute(self, req: AddLinksRequest) -> AddLinksResponse:
         pass
 
 
 class IImportLinksUseCase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def execute(self, req: ImportLinksRequest) -> IResponse:
+    def execute(self, req: ImportLinksRequest) -> ImportLinksResponse:
         pass
 
 
 class IFindByTagUseCase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def execute(self, req: FindByTagRequest) -> IResponse:
+    def execute(self, req: FindByTagRequest) -> FindByTagResponse:
         pass

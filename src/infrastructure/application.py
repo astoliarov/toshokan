@@ -21,7 +21,7 @@ class Toshokan:
         # self.links_dao = MockLinksDAO()
         # self.statistics_dao = MockImportStatisticsDAO()
 
-        self.storage = Storage("toshokan", "mongo:27017")
+        self.storage = Storage(self.config.MONGO_DB_NAME, self.config.MONGO_URI)
         self.links_dao = self.storage.links_dao
         self.statistics_dao = self.storage.import_statistics_dao
 
@@ -40,7 +40,10 @@ class Toshokan:
 
         self.find_by_tag_usecase = FindByTagUseCase(links_dao=self.links_dao)
 
-        self.cli = CLI(self.import_from_pocket_usecase)
+        self.cli = CLI(
+            import_pocket_use_case=self.import_from_pocket_usecase,
+            find_by_tag_use_case=self.find_by_tag_usecase,
+        )
 
     def run_cli(self):
         fire.Fire(self.cli)

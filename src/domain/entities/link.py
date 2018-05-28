@@ -1,4 +1,5 @@
 # coding: utf-8
+import datetime
 from typing import List, Optional
 
 from domain.constants import LinkSourceEnum
@@ -7,7 +8,7 @@ from domain.constants import LinkSourceEnum
 class Link:
 
     def __init__(
-        self, internal_id: Optional[str], url: str, name: str, image_url: str, tags: List[str], source: LinkSourceEnum
+        self, internal_id: Optional[str], url: str, name: str, image_url: str, tags: List[str], source: LinkSourceEnum,
     ) -> None:
         self.internal_id = internal_id
 

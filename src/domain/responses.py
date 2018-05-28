@@ -3,10 +3,9 @@ from typing import List
 
 from domain.constants import ResponsesTypesEnum, LinkSourceEnum
 from domain.entities import Link
-from domain.interfaces import IResponse
 
 
-class SuccessResponse(IResponse):
+class SuccessResponse:
 
     def get_type(self) -> ResponsesTypesEnum:
         return ResponsesTypesEnum.SUCCESS

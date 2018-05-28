@@ -1,6 +1,7 @@
 # Toshokan
+Japanese: 図書館 (library)
 
-Link sharing project that will be build with clean architecture
+Link sharing application
 
 ### Features
 

@@ -7,6 +7,9 @@ class Config:
     POCKET_CONSUMER_KEY = ""
     POCKET_ACCESS_TOKEN = ""
 
+    MONGO_URI = "mongo:27017"
+    MONGO_DB_NAME = "toshokan"
+
 
 class EnvironmentConfig(Config):
 

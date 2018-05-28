@@ -13,7 +13,7 @@ class MongoengineLinkDAO(ILinksDAO):
     def find_by_tag(self, tag: str) -> List[Link]:
         entities = []
 
-        models = LinkModel.objects.filter(tag=tag)
+        models = LinkModel.objects.filter(tags=tag)
         for model in models:
             entities.append(model.to_entity())
 
