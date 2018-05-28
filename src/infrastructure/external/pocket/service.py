@@ -12,8 +12,7 @@ from domain.interfaces import ILinkSource, ILinksDAO
 
 class PocketLinkSource(ILinkSource):
 
-    def __init__(self, links_dao: ILinksDAO, consumer_key: str, access_token: str) -> None:
-        self.links_dao = links_dao
+    def __init__(self, consumer_key: str, access_token: str) -> None:
         self.client = pocket.Pocket(consumer_key, access_token)
 
     def get_source(self) -> LinkSourceEnum:

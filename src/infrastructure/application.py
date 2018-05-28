@@ -23,7 +23,7 @@ class Toshokan:
         self.notification_service = MockNotificationService()
 
         self.pocket_source = PocketLinkSource(
-            self.links_dao, self.config.POCKET_CONSUMER_KEY, self.config.POCKET_ACCESS_TOKEN
+            self.config.POCKET_CONSUMER_KEY, self.config.POCKET_ACCESS_TOKEN
         )
 
         self.import_from_pocket_usecase = ImportLinksUseCase(
